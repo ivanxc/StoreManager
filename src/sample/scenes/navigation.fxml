@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <VBox maxWidth="160.0" prefHeight="266.0" prefWidth="194.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                      <Label prefHeight="30.0" prefWidth="119.0" text="undefined">
+                          <font>
+                              <Font size="20.0" />
+                          </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="5.0" />
+                     </HBox.margin>
+                      </Label>
+                      <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="23.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="X">
+                          <opaqueInsets>
+                              <Insets />
+                          </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+                <Button fx:id="startSellingButton" minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#startSelling" prefHeight="60.0" prefWidth="160.0" text="Продажа" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#admission" prefHeight="60.0" prefWidth="160.0" text="Поступление" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#inventory" prefHeight="60.0" prefWidth="160.0" text="Инвентаризация" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Button minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#reports" prefHeight="60.0" prefWidth="160.0" text="Отчёты">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            <Button minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#reports" prefHeight="60.0" prefWidth="160.0" text="Управление" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
