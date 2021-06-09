@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <AnchorPane fx:id="startPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="279.0" layoutY="117.0" text="Вход">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+            <SplitMenuButton fx:id="chooseUser" layoutX="214.0" layoutY="174.0" mnemonicParsing="false" text="Выберите..">
+              <items>
+                <MenuItem mnemonicParsing="false" text="user1" />
+                <MenuItem mnemonicParsing="false" text="user2" />
+              </items>
+            </SplitMenuButton>
+            <Button layoutX="370.0" layoutY="174.0" mnemonicParsing="false" text="Новый пользователь" />
+            <Label layoutX="87.0" layoutY="174.0" text="Польхователь">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="236.0" text="Предприятие">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <SplitMenuButton fx:id="chooseFacility" layoutX="214.0" layoutY="236.0" mnemonicParsing="false" text="Выберите..">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
+            <Button layoutX="370.0" layoutY="236.0" mnemonicParsing="false" text="Новое предприятие" />
+            <Button fx:id="enter" layoutX="252.0" layoutY="289.0" mnemonicParsing="false" onAction="#enter" prefHeight="30.0" prefWidth="92.0" text="Войти">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
