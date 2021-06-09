@@ -83,9 +83,27 @@ public class Controller {
         stage.show();
     }
 
-    public void logout(ActionEvent actionEvent) throws IOException {
+    public void toSignIn(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("scenes/signin.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void addUser(ActionEvent actionEvent) throws IOException {
+        System.out.println("click");
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/controlUsers.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void addFacility(ActionEvent actionEvent) throws IOException {
+        System.out.println("click");
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/controlFacilities.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
