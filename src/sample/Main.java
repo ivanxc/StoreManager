@@ -6,7 +6,7 @@ import javafx.scene.*;
 import javafx.stage.*;
 
 public class Main extends Application {
-
+    public static String userName = "";
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("scenes/signin.fxml"));

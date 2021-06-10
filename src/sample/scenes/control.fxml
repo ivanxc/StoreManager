@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <fx:include source="navigation.fxml" />
+        <AnchorPane fx:id="startPane" layoutX="160.0" prefHeight="400.0" prefWidth="440.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="14.0" layoutY="14.0" text="Управление">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+            <Button layoutX="14.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Очистить все данные" />
+            <Button fx:id="clearData" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="Очистить данные, относящиеся к" />
+            <SplitMenuButton fx:id="chooseToDelete" accessibleRole="TEXT" layoutX="220.0" layoutY="59.0" mnemonicParsing="false" text="Выберите..">
+              <items>
+                <MenuItem mnemonicParsing="true" onAction="#clickPersonal" text="Персонал" />
+                <MenuItem mnemonicParsing="true" onAction="#clickChecks" text="Чеки" />
+                 <MenuItem mnemonicParsing="true" onAction="#clickChecksDetails" text="Детали чеков" />
+                 <MenuItem mnemonicParsing="true" onAction="#clickProducts" text="Продукты" />
+                 <MenuItem mnemonicParsing="true" onAction="#clickAdmissions" text="Поставки" />
+                 <MenuItem mnemonicParsing="true" onAction="#clickAdmissionsDetails" text="Детали поставок" />
+              </items>
+            </SplitMenuButton>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -18,6 +18,7 @@
                 <Button layoutX="224.0" layoutY="303.0" mnemonicParsing="false" text="Добавить" />
                 <TextField layoutX="14.0" layoutY="303.0" prefHeight="26.0" prefWidth="188.0" text="Новый пользователь" />
                 <Button layoutX="224.0" layoutY="339.0" mnemonicParsing="false" onAction="#toSignIn" prefHeight="26.0" prefWidth="69.0" text="Назад" />
+            <Button disable="true" layoutX="233.0" layoutY="50.0" mnemonicParsing="false" text="Удалить" />
             </children>
         </AnchorPane>
     </children>

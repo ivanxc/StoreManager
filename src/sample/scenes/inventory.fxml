@@ -22,8 +22,8 @@
                         <TableColumn prefWidth="80" text="Расхождение" />
                     </columns>
                 </TableView>
-                <Button layoutX="300.0" layoutY="365.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Оформить" />
-                <Button layoutX="210.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Подтвердить" />
+                <Button disable="true" layoutX="300.0" layoutY="365.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Оформить" />
+                <Button disable="true" layoutX="210.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Подтвердить" />
                 <Label layoutX="10.0" layoutY="100.0" text="Название">
                     <font>
                         <Font size="14.0" />
@@ -34,6 +34,7 @@
                         <Font size="20.0" />
                     </font></Label>
                 <TextField disable="true" layoutX="110.0" layoutY="365.0" prefHeight="26.0" prefWidth="115.0" />
+            <Button disable="true" layoutX="330.0" layoutY="120.0" mnemonicParsing="false" text="Удалить" />
             </children></AnchorPane>
     </children>
 </AnchorPane>

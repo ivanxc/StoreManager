@@ -31,14 +31,14 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <SplitMenuButton mnemonicParsing="false" text="день">
+                        <SplitMenuButton fx:id="reportFrom" mnemonicParsing="false" text="день">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="день" />
-                            <MenuItem mnemonicParsing="false" text="неделя" />
-                              <MenuItem mnemonicParsing="false" text="месяц" />
-                              <MenuItem mnemonicParsing="false" text="квартал" />
-                              <MenuItem mnemonicParsing="false" text="год" />
-                              <MenuItem mnemonicParsing="false" text="все время" />
+                            <MenuItem mnemonicParsing="false" onAction="#day" text="день" />
+                            <MenuItem mnemonicParsing="false" onAction="#week" text="неделя" />
+                              <MenuItem mnemonicParsing="false" onAction="#month" text="месяц" />
+                              <MenuItem mnemonicParsing="false" onAction="#quarter" text="квартал" />
+                              <MenuItem mnemonicParsing="false" onAction="#year" text="год" />
+                              <MenuItem mnemonicParsing="false" onAction="#allTime" text="все время" />
                           </items>
                         </SplitMenuButton>
                      </children>

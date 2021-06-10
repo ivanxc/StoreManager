@@ -53,6 +53,11 @@
                     </font>
                 </Button>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <Button layoutX="10.0" layoutY="241.0" minHeight="60.0" minWidth="160.0" mnemonicParsing="false" onAction="#control" prefHeight="60.0" prefWidth="160.0" text="Управление">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets top="10.0" />

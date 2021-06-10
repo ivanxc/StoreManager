@@ -19,24 +19,13 @@
                 <MenuItem mnemonicParsing="false" text="user2" />
               </items>
             </SplitMenuButton>
-            <Button layoutX="370.0" layoutY="236.0" mnemonicParsing="false" onAction="#addUser" text="Новый пользователь" />
+            <Button disable="true" layoutX="338.0" layoutY="236.0" mnemonicParsing="false" onAction="#addUser" text="Новый пользователь" />
             <Label layoutX="87.0" layoutY="236.0" text="Пользователь">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="174.0" text="Предприятие">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <SplitMenuButton fx:id="chooseFacility" layoutX="214.0" layoutY="174.0" mnemonicParsing="false" text="Выберите..">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
-            <Button layoutX="372.0" layoutY="174.0" mnemonicParsing="false" onAction="#addFacility" text="Новое предприятие" />
+            <Button disable="true" layoutX="458.0" layoutY="360.0" mnemonicParsing="false" onAction="#addFacility" text="Новое предприятие" />
             <Button fx:id="enter" layoutX="252.0" layoutY="289.0" mnemonicParsing="false" onAction="#enter" prefHeight="30.0" prefWidth="92.0" text="Войти">
                <font>
                   <Font size="14.0" />
