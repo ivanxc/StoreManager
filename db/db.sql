@@ -6,7 +6,8 @@ CREATE TABLE product (
    title varchar(255),
    price double precision,
    barcode integer,
-   amount integer
+   amount float,
+   is_sold boolean default false
 );
 
 
@@ -19,9 +20,9 @@ CREATE TABLE admission (
 
 CREATE TABLE admission_product (
    id serial primary key,
-   product_id integer references product (id),
-   admission_id integer references admission (id),
-   amount integer,
+   product_id integer references product (id) ON DELETE CASCADE,
+   admission_id integer references admission (id) ON DELETE CASCADE,
+   amount float,
    price double precision
 );
 
@@ -34,7 +35,7 @@ CREATE TABLE cashier (
 
 CREATE TABLE checks (
    id serial primary key,
-   cashier_id integer references cashier (id),
+   cashier_id integer references cashier (id) ON DELETE CASCADE,
    price double precision,
    check_date timestamp default current_timestamp
 );
@@ -42,9 +43,8 @@ CREATE TABLE checks (
 
 CREATE TABLE selling (
    id serial primary key,
-   product_id integer references product (id),
-   check_id integer references checks (id),
+   product_id integer references product (id) ON DELETE CASCADE,
+   check_id integer references checks (id) ON DELETE CASCADE,
    price double precision,
-   amount integer
+   amount float
 );
-
