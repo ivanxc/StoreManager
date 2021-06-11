@@ -115,15 +115,6 @@ public class Controller {
         stage.show();
     }
 
-    public void addFacility(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/controlFacilities.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void clickPersonal(ActionEvent actionEvent) throws IOException {
         chooseToDelete.setText("Персонал");
     }
@@ -167,8 +158,9 @@ public class Controller {
     public void year(ActionEvent actionEvent) throws IOException {
         reportFrom.setText("год");
 
-    }public void allTime(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("все время");
     }
 
+    public void allTime(ActionEvent actionEvent) throws IOException {
+        reportFrom.setText("все время");
+    }
 }

@@ -1,7 +1,4 @@
-CREATE DATABASE lab2;
-
-
-CREATE TABLE product (
+CREATE TABLE IF NOT EXISTS product (
    id serial primary key,
    title varchar(255),
    price double precision,
@@ -11,14 +8,14 @@ CREATE TABLE product (
 );
 
 
-CREATE TABLE admission (
+CREATE TABLE IF NOT EXISTS admission (
    id serial primary key,
    title varchar(255),
    admission_date timestamp default current_timestamp
 );
 
 
-CREATE TABLE admission_product (
+CREATE TABLE IF NOT EXISTS admission_product (
    id serial primary key,
    product_id integer references product (id) ON DELETE CASCADE,
    admission_id integer references admission (id) ON DELETE CASCADE,
@@ -27,13 +24,13 @@ CREATE TABLE admission_product (
 );
 
 
-CREATE TABLE cashier (
+CREATE TABLE IF NOT EXISTS cashier (
    id serial primary key,
    name varchar(255)
 );
 
 
-CREATE TABLE checks (
+CREATE TABLE IF NOT EXISTS checks (
    id serial primary key,
    cashier_id integer references cashier (id) ON DELETE CASCADE,
    price double precision,
@@ -41,7 +38,7 @@ CREATE TABLE checks (
 );
 
 
-CREATE TABLE selling (
+CREATE TABLE IF NOT EXISTS selling (
    id serial primary key,
    product_id integer references product (id) ON DELETE CASCADE,
    check_id integer references checks (id) ON DELETE CASCADE,
