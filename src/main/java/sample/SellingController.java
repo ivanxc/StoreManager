@@ -112,7 +112,7 @@ public class SellingController {
     public void createCheck() throws SQLException {
         Connection connection = Main.connection;
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM get_cashier_id('" + "Новый пользователь" + "');");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM get_cashier_id('" + SignInController.name + "');");
         resultSet.next();
         int cashierId = resultSet.getInt(1);
         resultSet = statement.executeQuery("SELECT * FROM add_check(" + sum + ", " + cashierId + ");");

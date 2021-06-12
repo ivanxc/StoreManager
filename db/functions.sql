@@ -111,11 +111,20 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION sell_product_by_id(IN id integer)
-RETURNS void AS
+CREATE OR REPLACE FUNCTION sell_product_by_id(IN id integer, sell_amount double precision)
+    RETURNS void AS
 $$
+DECLARE
+    product_amount double precision;
 BEGIN
-     UPDATE product SET is_sold = true WHERE product.id = $1;
+    UPDATE product SET amount = amount - sell_amount
+    WHERE product.id = $1;
+
+    SELECT amount INTO product_amount FROM product WHERE product.id = $1;
+
+    IF product_amount = 0 THEN
+        UPDATE product SET is_sold = true WHERE product.id = $1;
+    END IF;
 END;
 $$ LANGUAGE plpgsql;
 
