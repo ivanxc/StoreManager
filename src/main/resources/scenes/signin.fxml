@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SignInController">
+    <children>
+        <AnchorPane fx:id="startPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="279.0" layoutY="117.0" text="Вход">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+            <SplitMenuButton fx:id="chooseUser" disable="true" layoutX="214.0" layoutY="236.0" mnemonicParsing="false" text="Выберите..">
+              <items>
+              </items>
+            </SplitMenuButton>
+            <Button fx:id="addUserButton" layoutX="338.0" layoutY="236.0" mnemonicParsing="false" onAction="#addUser" text="Новый пользователь" />
+            <Label layoutX="87.0" layoutY="236.0" text="Пользователь">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="enterButton" disable="true" layoutX="252.0" layoutY="289.0" mnemonicParsing="false" onAction="#enter" prefHeight="30.0" prefWidth="92.0" text="Войти">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

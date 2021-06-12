@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <fx:include source="navigation.fxml"/>
+        <AnchorPane fx:id="startPane" layoutX="160.0" prefHeight="400.0" prefWidth="440.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="103.0" layoutY="186.0" text="Приложение готово к работе">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -1,22 +1,19 @@
-CREATE OR REPLACE FUNCTION add_products(IN titles varchar(255)[],
-					                    IN prices double precision[],
-					                    IN barcodes integer[],
-					                    IN amount float[])
-RETURNS void AS
+CREATE OR REPLACE FUNCTION add_products(IN title varchar(255),
+					                    IN price double precision,
+					                    IN barcode integer,
+					                    IN amount float)
+RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO product (title, price, barcode, amount) SELECT UNNEST(titles), UNNEST(prices), UNNEST (barcodes), UNNEST(amount);
-END;
-$$ LANGUAGE plpgsql;
+   INSERT INTO product (title, price, barcode, amount) VALUES (title, price, barcode, amount) RETURNING id;
+$$ LANGUAGE SQL;
 
 
 CREATE OR REPLACE FUNCTION add_admission(IN title varchar(255))
-RETURNS void AS
+    RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO admission (title) values (title);
-END;
-$$ LANGUAGE plpgsql;
+INSERT INTO admission (title) values (title)
+RETURNING admission.id;
+$$ LANGUAGE sql;
 
 
 CREATE OR REPLACE FUNCTION add_admission_product(IN product_id integer,
@@ -45,7 +42,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION update_product_price(IN id integer, IN new_price integer)
+CREATE OR REPLACE FUNCTION update_product_price(IN id integer, IN new_price double precision)
 RETURNS void AS
 $$
 BEGIN
