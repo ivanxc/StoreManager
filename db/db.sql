@@ -45,3 +45,7 @@ CREATE TABLE IF NOT EXISTS selling (
    price double precision,
    amount float
 );
+
+
+CREATE INDEX product_title ON product(title);
+CREATE INDEX product_barcode ON product(barcode);

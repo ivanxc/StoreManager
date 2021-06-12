@@ -1,10 +1,11 @@
 CREATE OR REPLACE FUNCTION add_products(IN titles varchar(255)[],
 					                    IN prices double precision[],
-					                    IN barcodes integer[])
+					                    IN barcodes integer[],
+					                    IN amount float[])
 RETURNS void AS
 $$
 BEGIN
-   INSERT INTO product (title, price, barcode) SELECT UNNEST(titles), UNNEST(prices), UNNEST (barcodes);
+   INSERT INTO product (title, price, barcode, amount) SELECT UNNEST(titles), UNNEST(prices), UNNEST (barcodes), UNNEST(amount);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -141,11 +142,60 @@ RETURNS void AS
 $$
 DECLARE
    name varchar;
+   destination varchar;
    table_names varchar[] := ARRAY['product', 'admission', 'admission_product', 'cashier', 'checks', 'selling'];
 BEGIN
    FOREACH name IN ARRAY table_names
       LOOP
+         SELECT setval(name || '_id_' || 'seq', 1, FALSE)::varchar INTO destination;
          EXECUTE 'DELETE FROM ' || name || ' CASCADE';
       END LOOP;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION delete_cashier(IN name varchar)
+RETURNS void AS
+$$
+BEGIN
+   UPDATE checks SET cashier_id = NULL WHERE cashier_id = (SELECT id FROM cashier WHERE cashier.name = $1);
+   DELETE FROM cashier WHERE cashier.name = $1;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION find_product_by_title_or_barcode(IN product_title varchar DEFAULT '',
+                                                            IN product_barcode integer DEFAULT 0)
+RETURNS TABLE (id integer,
+               title varchar(255),
+               price double precision,
+               barcode integer,
+               amount float,
+               is_sold boolean) AS
+$$
+BEGIN
+   IF $2 = 0 AND $1 = '' THEN
+      RETURN QUERY (SELECT * FROM product);
+   ELSIF $2 = 0 THEN
+      RETURN QUERY (SELECT * FROM product WHERE product.title LIKE FORMAT('%s%%', $1));
+   ELSE
+      RETURN QUERY (SELECT * FROM product WHERE product.barcode = $2);
+   END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION find_product_by_id(IN product_id integer)
+RETURNS TABLE (id integer,
+               title varchar(255),
+               price double precision,
+               barcode integer,
+               amount float,
+               is_sold boolean) AS
+$$
+BEGIN
+   RETURN QUERY (SELECT * FROM product WHERE product.id = $1);
+END;
+$$ LANGUAGE plpgsql;
+
