@@ -26,7 +26,7 @@ public class Controller {
     @FXML
     private SplitMenuButton chooseToDelete;
     @FXML
-    private Label user;
+    public static Label user;
     @FXML
     SplitMenuButton reportFrom;
 

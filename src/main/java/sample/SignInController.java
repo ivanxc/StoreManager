@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SignInController {
-    String name;
+    public static String name;
     @FXML
     private SplitMenuButton chooseUser;
     @FXML

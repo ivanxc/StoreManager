@@ -92,12 +92,10 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION add_check(IN price double precision, IN cashier_id integer)
-RETURNS void AS
+RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO checks (price, cashier_id) VALUES ($1, $2);
-END;
-$$ LANGUAGE plpgsql;
+   INSERT INTO checks (price, cashier_id) VALUES ($1, $2) RETURNING checks.id;
+$$ LANGUAGE SQL;
 
 
 CREATE OR REPLACE FUNCTION get_checks_from_period(IN top_period varchar(255), low_period varchar(255) DEFAULT '')
@@ -150,7 +148,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
+CREATE OR REPLACE FUNCTION get_cashier_id(cashier_name varchar(256)) RETURNS integer AS
+$$
+SELECT cashier.id
+FROM cashier
+WHERE cashier.name = cashier_name;
+$$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION delete_cashier(IN name varchar)
 RETURNS void AS

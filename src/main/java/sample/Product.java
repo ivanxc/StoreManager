@@ -1,10 +1,12 @@
 package sample;
 
 public class Product {
+    private int id;
     private String titleT;
     private int barcodeT;
     private double priceT;
     private double amountT;
+    private double totalT;
 
     public Product(String title, int barcode, double price, double amount) {
         this.titleT = title;
@@ -12,6 +14,8 @@ public class Product {
         this.priceT = price;
         this.amountT = amount;
     }
+
+    public int getId() { return id; }
 
     public String getTitleT() {
         return titleT;
@@ -29,6 +33,12 @@ public class Product {
         return amountT;
     }
 
+    public double getTotalT() {
+        return totalT;
+    }
+
+    public void setId(int id) { this.id = id; }
+
     public void setTitleT(String titleT) {
         this.titleT = titleT;
     }
@@ -44,6 +54,11 @@ public class Product {
     public void setAmountT(double amountT) {
         this.amountT = amountT;
     }
+
+    public void setTotalT(double totalT) {
+        this.totalT = totalT;
+    }
+
 
     @Override
     public String toString() {
