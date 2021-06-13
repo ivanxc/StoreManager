@@ -122,7 +122,15 @@ public class SellingController {
             Product product = productsInCheck.get(i);
             resultSet = statement.executeQuery("SELECT * FROM add_selling(" + product.getId() + ", " +
                    checkId + ", " + product.getTotalT() + ", " + product.getPriceT() + ");");
+            resultSet = statement.executeQuery("SELECT * FROM sell_product_by_id(" + product.getId() + ", " +
+                    product.getAmountT() + ");");
         }
+        title.setStyle("-fx-border-color: white");
+        barcode.setStyle("-fx-border-color: white");
+        amount.setStyle("-fx-border-color: white");
+        table.getItems().clear();
+        totalPrice.setText("К оплате: 0 руб.");
+        productsInCheck.clear();
     }
 
     public void showPromptTitle() throws SQLException {
@@ -155,7 +163,7 @@ public class SellingController {
 
         (suggestedBarcodes.stream().collect(Collectors.toSet())).retainAll(suggestedBarcodes2.stream().collect(Collectors.toSet()));
         String[] suggestedBarcodesAsArray = suggestedBarcodes.toArray(new String[0]);
-        TextFields.bindAutoCompletion(title, suggestedBarcodesAsArray);
+        TextFields.bindAutoCompletion(barcode, suggestedBarcodesAsArray);
     }
 
     public boolean checkAmount() throws SQLException {

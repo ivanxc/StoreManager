@@ -30,14 +30,15 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION get_all_products()
-RETURNS TABLE (id integer,
-               title varchar(255),
-               amount float,
-               price double precision,
-               barcode integer) AS
+    RETURNS TABLE (id integer,
+                   title varchar(255),
+                   price double precision,
+                   barcode integer,
+                   amount float,
+                   is_sold boolean) AS
 $$
 BEGIN
-   RETURN QUERY(SELECT * FROM product);
+    RETURN QUERY(SELECT * FROM product);
 END;
 $$ LANGUAGE plpgsql;
 

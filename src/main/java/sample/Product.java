@@ -7,6 +7,8 @@ public class Product {
     private double priceT;
     private double amountT;
     private double totalT;
+    private double actualAmountT;
+    private double differenceT;
 
     public Product(String title, int barcode, double price, double amount) {
         this.titleT = title;
@@ -33,9 +35,15 @@ public class Product {
         return amountT;
     }
 
+    public double getActualAmountT() {
+        return actualAmountT;
+    }
+
     public double getTotalT() {
         return totalT;
     }
+
+    public double getDifferenceT() { return differenceT; }
 
     public void setId(int id) { this.id = id; }
 
@@ -55,9 +63,15 @@ public class Product {
         this.amountT = amountT;
     }
 
+    public void setActualAmountT(double actualAmountT) {
+        this.actualAmountT = actualAmountT;
+    }
+
     public void setTotalT(double totalT) {
         this.totalT = totalT;
     }
+
+    public void setDifferenceT(double differenceT) { this.differenceT = differenceT; }
 
 
     @Override

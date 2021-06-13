@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.inventoryController">
     <children>
         <fx:include source="navigation.fxml" />
         <AnchorPane layoutX="160.0" prefHeight="400.0" prefWidth="440.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0">
@@ -14,27 +14,27 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TableView layoutY="160.0" prefHeight="200.0" prefWidth="440.0" AnchorPane.leftAnchor="0.0">
+                <TableView fx:id="table" layoutY="160.0" prefHeight="200.0" prefWidth="440.0" AnchorPane.leftAnchor="0.0">
                     <columns>
-                        <TableColumn prefWidth="200.20001220703125" text="Название" />
-                        <TableColumn prefWidth="80.199951171875" text="Кол-во" />
-                        <TableColumn prefWidth="80" text="На складе" />
-                        <TableColumn prefWidth="80" text="Расхождение" />
+                        <TableColumn fx:id="titleT" editable="false" prefWidth="200.20001220703125" text="Название" />
+                        <TableColumn fx:id="actualAmountT" prefWidth="80.199951171875" text="Кол-во" />
+                        <TableColumn fx:id="amountT" editable="false" prefWidth="80" text="На складе" />
+                        <TableColumn fx:id="differenceT" editable="false" prefWidth="80" text="Расхождение" />
                     </columns>
                 </TableView>
-                <Button disable="true" layoutX="300.0" layoutY="365.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Оформить" />
-                <Button disable="true" layoutX="210.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Подтвердить" />
+                <Button disable="true" layoutX="300.0" layoutY="365.0" mnemonicParsing="false" onAction="#arrange" prefHeight="26.0" prefWidth="120.0" text="Оформить" />
+                <Button disable="true" layoutX="210.0" layoutY="120.0" mnemonicParsing="false" onAction="#confirm" prefHeight="26.0" prefWidth="108.0" text="Подтвердить" />
                 <Label layoutX="10.0" layoutY="100.0" text="Название">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <TextField layoutX="10.0" layoutY="120.0" prefHeight="26.0" prefWidth="190.0" />
+                <TextField fx:id="title" layoutX="10.0" layoutY="120.0" onKeyTyped="#suggest" prefHeight="26.0" prefWidth="190.0" />
                 <Label layoutX="10.0" layoutY="14.0" text="Инвентаризация" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
                     <font>
                         <Font size="20.0" />
                     </font></Label>
                 <TextField disable="true" layoutX="110.0" layoutY="365.0" prefHeight="26.0" prefWidth="115.0" />
-            <Button disable="true" layoutX="330.0" layoutY="120.0" mnemonicParsing="false" text="Удалить" />
+            <Button disable="true" layoutX="330.0" layoutY="120.0" mnemonicParsing="false" onAction="#delete" text="Удалить" />
             </children></AnchorPane>
     </children>
 </AnchorPane>
