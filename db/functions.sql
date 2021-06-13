@@ -7,6 +7,11 @@ $$
    INSERT INTO product (title, price, barcode, amount) VALUES (title, price, barcode, amount) RETURNING id;
 $$ LANGUAGE SQL;
 
+CREATE OR REPLACE FUNCTION delete_product(product_id integer) RETURNS void AS
+$$
+DELETE FROM product
+WHERE product.id = product_id;
+$$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION add_admission(IN title varchar(255))
     RETURNS integer AS
@@ -61,7 +66,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION change_product_amount(IN id integer, IN new_amount integer)
+CREATE OR REPLACE FUNCTION change_product_amount(IN id integer, IN new_amount double precision)
 RETURNS void AS
 $$
 BEGIN
@@ -131,13 +136,10 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION clear_table(IN table_name varchar(255))
-RETURNS void AS
+    RETURNS void AS
 $$
-DECLARE
-   destination varchar;
 BEGIN
-   SELECT setval(table_name || '_id_' || 'seq', 1, FALSE)::varchar INTO destination;
-   EXECUTE 'TRUNCATE ' || table_name || ' CASCADE';
+    EXECUTE 'TRUNCATE ' || table_name || ' CASCADE RESTART IDENTITY';
 END;
 $$ LANGUAGE plpgsql;
 
@@ -153,7 +155,7 @@ BEGIN
    FOREACH name IN ARRAY table_names
       LOOP
          SELECT setval(name || '_id_' || 'seq', 1, FALSE)::varchar INTO destination;
-         EXECUTE 'DELETE FROM ' || name || ' CASCADE';
+         EXECUTE 'DELETE FROM ' || name || ' CASCADE RESTART IDENTITY';
       END LOOP;
 END;
 $$ LANGUAGE plpgsql;

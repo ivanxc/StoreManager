@@ -24,8 +24,6 @@ public class Controller {
     @FXML
     private SplitMenuButton chooseUser;
     @FXML
-    private SplitMenuButton chooseToDelete;
-    @FXML
     public static Label user;
     @FXML
     SplitMenuButton reportFrom;
@@ -43,7 +41,6 @@ public class Controller {
     }
 
     public void toSignIn(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/signin.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -52,7 +49,6 @@ public class Controller {
     }
 
     public void startSelling(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/sellingScene.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -62,7 +58,6 @@ public class Controller {
     }
 
     public void admission(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/admission.fxml"));
         FXMLLoader.load(getClass().getResource("/scenes/admission.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -73,7 +68,6 @@ public class Controller {
     }
 
     public void inventory(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/inventory.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -83,7 +77,6 @@ public class Controller {
     }
 
     public void reports(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/reports.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -93,63 +86,12 @@ public class Controller {
     }
 
     public void control(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
         System.out.println(scene);
         Parent root = FXMLLoader.load(getClass().getResource("/scenes/control.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        System.out.println(scene);
         stage.setScene(scene);
         stage.show();
         ((Label) scene.lookup("#user")).setText(Main.userName);
-    }
-
-    public void clickPersonal(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Персонал");
-    }
-
-    public void clickChecks(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Чеки");
-    }
-
-    public void clickChecksDetails(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Детали чеков");
-    }
-
-    public void clickProducts(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Продукты");
-    }
-
-    public void clickAdmissions(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Поставки");
-    }
-
-    public void clickAdmissionsDetails(ActionEvent actionEvent) throws IOException {
-        chooseToDelete.setText("Детали поставок");
-    }
-
-    public void day(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("день");
-    }
-
-    public void week(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("неделя");
-    }
-
-    public void month(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("месяц");
-    }
-
-    public void quarter(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("квартал");
-    }
-
-    public void year(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("год");
-
-    }
-
-    public void allTime(ActionEvent actionEvent) throws IOException {
-        reportFrom.setText("все время");
     }
 }

@@ -2588,6 +2588,7 @@ sequence|table|33116|33118|1
     </table>
     <table id="41" parent="19" name="checks">
       <ObjectId>33104</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>storemanager</Owner>
       <StateNumber>824</StateNumber>
     </table>

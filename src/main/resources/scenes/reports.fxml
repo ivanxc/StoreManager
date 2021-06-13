@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.reportsController">
     <children>
         <fx:include source="navigation.fxml" />
         <AnchorPane fx:id="startPane" layoutX="160.0" prefHeight="400.0" prefWidth="500.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0">
@@ -43,7 +42,7 @@
                         </SplitMenuButton>
                      </children>
                   </HBox>
-                  <Label text="Доход: 0 руб">
+                  <Label fx:id="income" text="Доход: 0 руб">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -51,22 +50,6 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Прибыль: 0 руб">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <LineChart prefHeight="232.0" prefWidth="433.0">
-                    <xAxis>
-                      <CategoryAxis label="День" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis label="руб" side="LEFT" />
-                    </yAxis>
-                  </LineChart>
                </children>
             </VBox>
             </children>
