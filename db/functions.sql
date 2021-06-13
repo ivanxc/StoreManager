@@ -139,7 +139,7 @@ CREATE OR REPLACE FUNCTION clear_table(IN table_name varchar(255))
     RETURNS void AS
 $$
 BEGIN
-    EXECUTE 'TRUNCATE ' || table_name || ' CASCADE RESTART IDENTITY';
+    EXECUTE 'TRUNCATE ' || table_name || ' RESTART IDENTITY CASCADE';
 END;
 $$ LANGUAGE plpgsql;
 
@@ -155,7 +155,7 @@ BEGIN
    FOREACH name IN ARRAY table_names
       LOOP
          SELECT setval(name || '_id_' || 'seq', 1, FALSE)::varchar INTO destination;
-         EXECUTE 'DELETE FROM ' || name || ' CASCADE RESTART IDENTITY';
+         EXECUTE 'DELETE FROM ' || name || ' CASCADE';
       END LOOP;
 END;
 $$ LANGUAGE plpgsql;

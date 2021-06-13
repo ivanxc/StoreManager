@@ -121,7 +121,7 @@ public class SellingController {
         for(int i = 0; i < productsInCheck.size(); i++) {
             Product product = productsInCheck.get(i);
             resultSet = statement.executeQuery("SELECT * FROM add_selling(" + product.getId() + ", " +
-                   checkId + ", " + product.getTotalT() + ", " + product.getPriceT() + ");");
+                   checkId + ", " + product.getTotalT() + ", " + product.getAmountT() + ");");
             resultSet = statement.executeQuery("SELECT * FROM sell_product_by_id(" + product.getId() + ", " +
                     product.getAmountT() + ");");
         }
