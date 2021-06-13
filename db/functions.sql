@@ -199,3 +199,19 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+CREATE OR REPLACE FUNCTION check_is_any_product()
+RETURNS TRIGGER AS
+$$
+BEGIN
+   IF NEW.amount = 0 THEN
+      UPDATE product SET is_sold = true WHERE product.id = NEW.id;
+   ELSE
+      UPDATE product SET is_sold = false WHERE product.id = NEW.id;
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER sell_product AFTER UPDATE OF amount ON product FOR EACH ROW EXECUTE PROCEDURE check_is_any_product();
