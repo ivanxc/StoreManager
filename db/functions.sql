@@ -1,22 +1,19 @@
-CREATE OR REPLACE FUNCTION add_products(IN titles varchar(255)[],
-					                    IN prices double precision[],
-					                    IN barcodes integer[],
-					                    IN amount float[])
-RETURNS void AS
+CREATE OR REPLACE FUNCTION add_products(IN title varchar(255),
+					                    IN price double precision,
+					                    IN barcode integer,
+					                    IN amount float)
+RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO product (title, price, barcode, amount) SELECT UNNEST(titles), UNNEST(prices), UNNEST (barcodes), UNNEST(amount);
-END;
-$$ LANGUAGE plpgsql;
+   INSERT INTO product (title, price, barcode, amount) VALUES (title, price, barcode, amount) RETURNING id;
+$$ LANGUAGE SQL;
 
 
 CREATE OR REPLACE FUNCTION add_admission(IN title varchar(255))
-RETURNS void AS
+    RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO admission (title) values (title);
-END;
-$$ LANGUAGE plpgsql;
+INSERT INTO admission (title) values (title)
+RETURNING admission.id;
+$$ LANGUAGE sql;
 
 
 CREATE OR REPLACE FUNCTION add_admission_product(IN product_id integer,
@@ -45,7 +42,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION update_product_price(IN id integer, IN new_price integer)
+CREATE OR REPLACE FUNCTION update_product_price(IN id integer, IN new_price double precision)
 RETURNS void AS
 $$
 BEGIN
@@ -95,12 +92,10 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION add_check(IN price double precision, IN cashier_id integer)
-RETURNS void AS
+RETURNS integer AS
 $$
-BEGIN
-   INSERT INTO checks (price, cashier_id) VALUES ($1, $2);
-END;
-$$ LANGUAGE plpgsql;
+   INSERT INTO checks (price, cashier_id) VALUES ($1, $2) RETURNING checks.id;
+$$ LANGUAGE SQL;
 
 
 CREATE OR REPLACE FUNCTION get_checks_from_period(IN top_period varchar(255), low_period varchar(255) DEFAULT '')
@@ -116,11 +111,20 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION sell_product_by_id(IN id integer)
-RETURNS void AS
+CREATE OR REPLACE FUNCTION sell_product_by_id(IN id integer, sell_amount double precision)
+    RETURNS void AS
 $$
+DECLARE
+    product_amount double precision;
 BEGIN
-     UPDATE product SET is_sold = true WHERE product.id = $1;
+    UPDATE product SET amount = amount - sell_amount
+    WHERE product.id = $1;
+
+    SELECT amount INTO product_amount FROM product WHERE product.id = $1;
+
+    IF product_amount = 0 THEN
+        UPDATE product SET is_sold = true WHERE product.id = $1;
+    END IF;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -153,7 +157,12 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
+CREATE OR REPLACE FUNCTION get_cashier_id(cashier_name varchar(256)) RETURNS integer AS
+$$
+SELECT cashier.id
+FROM cashier
+WHERE cashier.name = cashier_name;
+$$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION delete_cashier(IN name varchar)
 RETURNS void AS

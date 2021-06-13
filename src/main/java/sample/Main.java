@@ -10,6 +10,8 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.stage.*;
 
 import java.io.*;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -27,12 +29,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/signin.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Store Manager");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -54,30 +50,35 @@ public class Main extends Application {
         connection.close();
         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/lab2", "storemanager", "strongPassword");
         statement = connection.createStatement();
-        FileInputStream initializeDB = new FileInputStream("db/db.sql");
-        importSQL(connection, initializeDB);
+        rs = statement.executeQuery("SELECT EXISTS (\n" +
+                "   SELECT FROM information_schema.tables \n" +
+                "   WHERE  table_schema = 'public'\n" +
+                "   AND    table_name   = 'product'\n" +
+                "   );");
+        rs.next();
+        if (rs.getBoolean(1) == false) {
+            // create tables
+            FileInputStream initializeDB = new FileInputStream("db/db.sql");
+            importSQL(connection, initializeDB);
+            System.out.println("Create tables");
+            // create functions
+            FileInputStream initializeFunctions = new FileInputStream("db/functions.sql");
+            importSQL(connection, initializeFunctions);
+            System.out.println("Create functions");
+        }
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/signin.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Store Manager");
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
         SplitMenuButton chooseUser = (SplitMenuButton)scene.lookup("#chooseUser");
-        ResultSet cashiers = statement.executeQuery("SELECT * FROM cashier;");
-        while(cashiers.next()) {
-            String cashierName = cashiers.getString("name");
-            System.out.println(cashierName);
-            MenuItem menuItem = new MenuItem(cashierName);
-            chooseUser.setDisable(false);
-            menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    ((SplitMenuButton)scene.lookup("#chooseUser")).setText(menuItem.getText());
-                }
-            });
-            chooseUser.getItems().add(menuItem);
-        }
     }
 
     public static void importSQL(Connection conn, InputStream in) throws SQLException
     {
         Scanner s = new Scanner(in);
-        s.useDelimiter("(;(\r)?\n)|(--\n)");
+        s.useDelimiter("(;;(\r)?\n)|(--\n)");
         Statement st = null;
         try
         {

@@ -1,7 +1,5 @@
 package sample;
 
-import com.sun.javafx.fxml.FXMLLoaderHelper;
-import com.sun.prism.shader.Solid_ImagePattern_Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +26,13 @@ public class Controller {
     @FXML
     private SplitMenuButton chooseToDelete;
     @FXML
-    private Label user;
+    public static Label user;
     @FXML
     SplitMenuButton reportFrom;
 
     public void enter(ActionEvent actionEvent) throws IOException {
         name = chooseUser.getText();
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/mainScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/mainScene.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -44,9 +42,18 @@ public class Controller {
         Main.userName = name;
     }
 
+    public void toSignIn(ActionEvent actionEvent) throws IOException {
+        System.out.println("click");
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/signin.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void startSelling(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/sellingScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/sellingScene.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -56,8 +63,8 @@ public class Controller {
 
     public void admission(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/admission.fxml"));
-        FXMLLoader.load(getClass().getResource("scenes/admission.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/admission.fxml"));
+        FXMLLoader.load(getClass().getResource("/scenes/admission.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -67,7 +74,7 @@ public class Controller {
 
     public void inventory(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/inventory.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/inventory.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -77,7 +84,7 @@ public class Controller {
 
     public void reports(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/reports.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/reports.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -88,31 +95,13 @@ public class Controller {
     public void control(ActionEvent actionEvent) throws IOException {
         System.out.println("click");
         System.out.println(scene);
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/control.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/scenes/control.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         System.out.println(scene);
         stage.setScene(scene);
         stage.show();
         ((Label) scene.lookup("#user")).setText(Main.userName);
-    }
-
-    public void toSignIn(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/signin.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void addUser(ActionEvent actionEvent) throws IOException {
-        System.out.println("click");
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/controlUsers.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void clickPersonal(ActionEvent actionEvent) throws IOException {
